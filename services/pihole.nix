@@ -1,4 +1,8 @@
-{ ... }: {
+{ config, ... }: {
+  sops.secrets."pihole_secret" = {
+    owner = "pihole";
+    mode = "0400";
+  };
   networking = {
     hosts = {
       "192.168.0.1" = [ "network.router.local" ];
@@ -45,7 +49,7 @@
         webserver = {
           api = {
 	          localAPIauth = false;
-	          pwhash = "";
+		  #pwhash = "$__file{${config.sops.secrets.pihole_secret.path}}";
           };
           session = {
             timeout = 43200; 
@@ -87,5 +91,8 @@
 
   systemd.tmpfiles.rules = [
     "f /etc/pihole/versions 0644 pihole pihole - -"
+  ];
+  systemd.services.pihole-ftl.serviceConfig.EnvironmentFile = [
+    config.sops.secrets."pihole_secret".path
   ];
 }
