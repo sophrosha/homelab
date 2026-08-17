@@ -76,6 +76,7 @@
     tree
     htop
     torrserver
+    pciutils
   ];
 
   services.openssh = {
