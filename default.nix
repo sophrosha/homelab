@@ -16,8 +16,8 @@
       ./services/jellyfin.nix
       ./services/samba.nix
       ./services/zapret.nix
-      ./services/stories_site/reverse-proxy.nix
-    ];
+    ]
+    ++ lib.optional (builtins.pathExists ./services/stories_site/reverse-proxy.nix) ./services/stories_site/reverse-proxy.nix;
 
   boot = {
     kernelParams = [ "nomodeset" ]; 
@@ -33,7 +33,7 @@
   networking = {
     hostName = "p5kserv";
     domain = "homeserver.local";
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    nameservers = [ "127.0.0.1" ];
     networkmanager.enable = true;
     
     defaultGateway = "192.168.0.1";
@@ -48,17 +48,14 @@
   };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnfreePredicate = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Asia/Yekaterinburg";
   i18n.defaultLocale = "en_US.UTF-8";
 
   users.users.server = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "sudo" "docker" ];
+    extraGroups = [ "wheel" "sudo" ];
     openssh.authorizedKeys.keys = [
        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG1pkloDfjGIUmr+1iv81Sb9bSUJ67OZ3iIVc3uL77ho sophrosha@DESKTOP-N4TID67"
     ];
