@@ -90,7 +90,7 @@ swapDevices = [
   networking = {
     hostName = "p5kserv"; # даем имя
     domain = "homeserver.local"; # какой будет домен
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    nameservers = [ "127.0.0.1" ]; # Пока не работает локальный DNS, меняем на стандартный 8.8.8.8
     networkmanager.enable = true;
 
     defaultGateway = "192.168.0.1"; # шлюз роутера
