@@ -1,4 +1,4 @@
-{lib, ...}: {
+{ ... }: {
   networking = {
     hosts = {
       "192.168.0.1" = [ "network.router.local" ];
@@ -44,7 +44,7 @@
         };
         webserver = {
           api = {
-	          localAPIauth = true;
+	          localAPIauth = false;
 	          pwhash = "";
           };
           session = {
