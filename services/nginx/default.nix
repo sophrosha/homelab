@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   imports = [ ./domain.nix ];
   services.nginx = {
     enable = true;
@@ -6,7 +6,7 @@
       enableACME = true;
       forceSSL = true;
       default = true;
-      root = ./bio;
+      root = lib.optional (builtins.pathExists ./bio);
     };
   };
 }

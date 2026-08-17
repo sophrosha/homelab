@@ -17,6 +17,6 @@
         proxyWebsockets = true;
         recommendedProxySettings = true;
       };
-    }
+    };
   };
 }
