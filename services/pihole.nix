@@ -15,20 +15,6 @@
   };
 
   services = {
-    dnsmasq = {
-      enable = false;
-      settings = {
-        dhcp-name-match = [
-          "set:hostname-ignore,wpad"
-          "set:hostname-ignore,localhost"
-        ];
-        dhcp-option = [
-          "vendor:MSFT,2,1i"
-          "6,192.168.0.102"
-        ];
-      };
-    };
-
     pihole-ftl = {
       enable = true;
       lists = [
@@ -41,7 +27,7 @@
       ];
       openFirewallDNS = true;
       openFirewallDHCP = true;
-      openFirewallWebserver = true;
+      openFirewallWebserver = false;
       queryLogDeleter = {
         enable = true;
 	      age = 50;
