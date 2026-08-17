@@ -2,7 +2,7 @@
   services.nextcloud = {
     enable = true;
     hostName = "cloud.sophron.ru";
-    maxUploadSize = "100000M";
+    maxUploadSize = "15000M";
     https = true;
     config = {
       dbtype = "sqlite";
