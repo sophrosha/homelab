@@ -2,10 +2,6 @@
   services.nextcloud = {
     enable = true;
     hostName = "cloud.sophron.ru";
-    #extraAppsEnable = true;
-    #extraApps = {
-    #  inherit (config.services.nextcloud.package.packages.apps) deck mail forms calendar music maps news cospend notes;
-    #};
     maxUploadSize = "100000M";
     https = true;
     config = {

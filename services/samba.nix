@@ -21,7 +21,7 @@
           "guest ok" = "yes";
           "create mask" = "0660";
           "directory mask" = "0770";
-	  "force user" = "server";
+	        "force user" = "server";
           "force group" = "users";
         };
         "private" = {
@@ -33,7 +33,7 @@
           "directory mask" = "0755";
           "force user" = "server";
           "force group" = "users";
-	  "valid users" = "sophrosha";
+	        "valid users" = "sophrosha";
         };
       };
     };
@@ -51,12 +51,12 @@
       "sophrosha" = {
         isSystemUser = true;
         group = "smb";
-	extraGroups = [ "users" ];
+	      extraGroups = [ "users" ];
       };
       "user" = {
         isSystemUser = true;
-	group = "smb";
-	extraGroups = [ "users" ];
+	      group = "smb";
+	      extraGroups = [ "users" ];
       };
     };
   };

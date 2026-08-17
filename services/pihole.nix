@@ -6,10 +6,10 @@
       "192.168.0.100" = [ "pc.local" ];
       "192.168.0.102" = [ 
         "server.local" "pihole.server.local" "grafana.server.local" 
-	"syncthing.server.local" "kino.server.local" "smb.server.local"
-	"torr.server.local" "qtorr.server.local"
-	"stories.server.local" "panel.stories.server.local"
-	"proxy.server.local"
+	      "syncthing.server.local" "kino.server.local" "smb.server.local"
+	      "torr.server.local" "qtorr.server.local"
+	      "stories.server.local" "panel.stories.server.local"
+	      "proxy.server.local"
       ];
     };
   };
@@ -44,8 +44,8 @@
       openFirewallWebserver = true;
       queryLogDeleter = {
         enable = true;
-	age = 50;
-	interval = "weekly";
+	      age = 50;
+	      interval = "weekly";
       };
       settings = {
         misc.readOnly = true;
@@ -58,11 +58,11 @@
         };
         webserver = {
           api = {
-	    localAPIauth = true;
-	    pwhash = "";
+	          localAPIauth = true;
+	          pwhash = "";
           };
           session = {
-            timeout = 43200; # 12h
+            timeout = 43200; 
           };
         };
       };
@@ -86,7 +86,7 @@
     nginx.virtualHosts."pihole.server.local" = {
       locations."/" = {
         proxyPass = "http://127.0.0.1:9832";
-	extraConfig = ''
+	      extraConfig = ''
           proxy_set_header Host $host;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -94,7 +94,7 @@
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection "upgrade";
-	'';
+	      '';
       };
     };
   };

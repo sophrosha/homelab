@@ -7,7 +7,6 @@
       forceSSL = true;
       default = true;
       root = ./bio;
-      extraConfig = '' charset utf-8; '';
     };
   };
 }

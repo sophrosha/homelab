@@ -22,12 +22,12 @@
     in {
       nixosConfigurations.${host} = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-	modules = [ 
-	  ./default.nix 
-	  arion.nixosModules.arion 
-	  zapret-discord-youtube.nixosModules.withTestTools 
-	  sops-nix.nixosModules.sops
-	];
+	      modules = [ 
+	        ./default.nix 
+	        arion.nixosModules.arion 
+	        zapret-discord-youtube.nixosModules.withTestTools 
+	        sops-nix.nixosModules.sops
+	      ];
       };
     };
 }

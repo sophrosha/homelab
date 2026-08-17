@@ -24,21 +24,21 @@
       port = 9099;
       scrapeConfigs = [
        { 
-         job_name = "node";
-	 static_configs = [{ targets = [ "127.0.0.1:9000" ]; }];
+        job_name = "node";
+	      static_configs = [{ targets = [ "127.0.0.1:9000" ]; }];
        }
       ];
       exporters = {
         node = {
           enable = true;
-	  port = 9000;
-	  enabledCollectors = [
+	        port = 9000;
+	        enabledCollectors = [
             "cpu" "loadavg" "meminfo" "diskstats" "netdev"
-	    "filesystem" "systemd" "swap" "hwmon" "ntp" "os"
-	    "netstat" "vmstat"
-	  ];
-	};
-	#snmp = {}; потом до роутеров дойду
+	          "filesystem" "systemd" "swap" "hwmon" "ntp" "os"
+	          "netstat" "vmstat"
+	        ];
+	      };
+	      #snmp = {};
       };
     };
     nginx.virtualHosts."grafana.server.local" = {

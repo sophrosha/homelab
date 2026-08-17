@@ -6,16 +6,15 @@
     jails = {
       sshd.settings = {
         enabled = true;
-	maxretry = 5;
-	findtime = "10m";
-	bantime = "1h";
+	      maxretry = 5;
+	      findtime = "10m";
+	      bantime = "1h";
       };
-
       recidive.settings = {
         enable = true;
-	maxretry = 2;
-	findtime = "1d";
-	bantime = "30d";
+	      maxretry = 2;
+	      findtime = "1d";
+	      bantime = "30d";
       };
     };
   };

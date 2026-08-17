@@ -16,27 +16,27 @@
         forceSSL = false;
         locations."/" = {
           proxyPass = "http://127.0.0.1:8096";
-	  proxyWebsockets = true;
-	  extraConfig = ''
+	        proxyWebsockets = true;
+	        extraConfig = ''
             proxy_pass_header Authorization;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
-	  '';
-	};
+	        '';
+	      };
       };
       "torr.server.local" = {
-        forceSSL = false;
-	locations."/" = {
-          proxyPass = "http://127.0.0.1:9117";
-	  proxyWebsockets = true;
-	};
+          forceSSL = false;
+	        locations."/" = {
+            proxyPass = "http://127.0.0.1:9117";
+	          proxyWebsockets = true;
+	        };
       };
       "qtorr.server.local" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:8791";
-	  proxyWebsockets = true;
+	        proxyWebsockets = true;
           extraConfig = ''
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -65,8 +65,8 @@
       "jellyfin".extraGroups = [ "users" ];
       "qbtr" = {
         isSystemUser = true;
-	group = "qbtr";
-	extraGroups = [ "users" ];
+	      group = "qbtr";
+	      extraGroups = [ "users" ];
       };
     };
   };
