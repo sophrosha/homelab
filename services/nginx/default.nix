@@ -6,7 +6,7 @@
       enableACME = true;
       forceSSL = true;
       default = true;
-      root = lib.optional (builtins.pathExists ./bio);
+      root = lib.optional (builtins.pathExists ./bio) ./bio;
     };
   };
 }
