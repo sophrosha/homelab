@@ -6,7 +6,7 @@
       enableACME = true;
       forceSSL = true;
       default = true;
-      root = lib.optional (builtins.pathExists ./bio) ./bio;
+      root = if builtins.pathExists ./bio then "${./bio}" else "/var/empty";
     };
   };
 }
