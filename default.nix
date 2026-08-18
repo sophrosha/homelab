@@ -68,7 +68,7 @@
       deploy = {
         isSystemUser = true;
 	group = "deploy";
-	#extraGroups = [ "deploy" ];
+	shell = pkgs.bash;
 	openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJR4XA+on1NpOB1BS42KXgHZAx9LwBWsLPos0tD11yox server@p5kserv"
 	];
