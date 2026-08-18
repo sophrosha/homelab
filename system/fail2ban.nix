@@ -11,7 +11,7 @@
 	      bantime = "1h";
       };
       recidive.settings = {
-        enable = true;
+        enabled = true;
 	      maxretry = 2;
 	      findtime = "1d";
 	      bantime = "30d";
