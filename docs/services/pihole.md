@@ -1,7 +1,7 @@
 #### DNS-Сервер Pi-Hole
 - Расположение: `services/pihole.nix`
 - Использующееся опции: `networking.hosts` `services.dnsmasq` `services.pihole-ftl` `services.pihole-web` `services.resolved` `services.nginx.virtualHosts` `systemd.tmpfiles.rules`
-- Зависимости: наличие nginx
+- Зависимости: наличие nginx, сгенерированный токен
 
 **Ключевые параметры**:
 - `networking.hosts` - настройка доменов для айпи адресов которые находятся внутри локальной сети
