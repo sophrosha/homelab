@@ -80,10 +80,16 @@
     enable = true;
     extraRules = [{
       groups = [ "deploy" ];
-      commands = [{
-        command = "/run/current-system/sw/bin/systemctl start deploy-configuration";
-	options = [ "NOPASSWD" ];
-      }];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/systemctl start deploy-configuration";
+	  options = [ "NOPASSWD" ];
+        }
+	{
+          command = "/run/current-system/sw/bin/nixos-rebuild switch --impure --flake path\\:/home/server/nixosConfigs\\#p5kserv";
+	  options = [ "NOPASSWD" ];
+	}
+      ];
     }];
   };
 
