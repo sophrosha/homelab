@@ -49,7 +49,6 @@
         webserver = {
           api = {
 	          localAPIauth = false;
-		  #pwhash = "$__file{${config.sops.secrets.pihole_secret.path}}";
           };
           session = {
             timeout = 43200; 
