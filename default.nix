@@ -53,15 +53,50 @@
   time.timeZone = "Asia/Yekaterinburg";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  users.users.server = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "sudo" ];
-    openssh.authorizedKeys.keys = [
-       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG1pkloDfjGIUmr+1iv81Sb9bSUJ67OZ3iIVc3uL77ho sophrosha@DESKTOP-N4TID67"
-    ];
-    home = "/home/server";
-    homeMode = "0750";
-   };
+  users = {
+    groups.deploy = {};
+    users = {
+      server = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "sudo" ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG1pkloDfjGIUmr+1iv81Sb9bSUJ67OZ3iIVc3uL77ho sophrosha@DESKTOP-N4TID67"
+        ];
+        home = "/home/server";
+        homeMode = "0750"; 
+      };
+      deploy = {
+        isSystemUser = true;
+	group = "deploy";
+	#extraGroups = [ "deploy" ];
+	openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJR4XA+on1NpOB1BS42KXgHZAx9LwBWsLPos0tD11yox server@p5kserv"
+	];
+      };
+    };
+  };
+
+  security.sudo = {
+    enable = true;
+    extraRules = [{
+      groups = [ "deploy" ];
+      commands = [{
+        command = "/run/current-system/sw/bin/nixos-rebuild switch --impure --flake path\\:/home/server/nixosConfigs\\#p5kserv";
+	options = [ "NOPASSWD" ];
+      }];
+    }];
+  };
+
+  systemd.services.deploy-configuration = {
+    description = "CI/CD Github runner rebuild";
+    path = [ "/run/wrappers" ];
+    script = ''/run/wrappers/bin/sudo -n /run/current-system/sw/bin/nixos-rebuild switch --impure --flake path:/home/server/nixosConfigs#p5kserv'';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "deploy";
+      Group = "deploy";
+    }; 
+  };
 
   environment.systemPackages = with pkgs; [
     neovim
