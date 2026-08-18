@@ -7,5 +7,6 @@
     "z /home/server/disk/private 0770 server users - -" 
 
     "a /home/server/nixosConfigs - - - - g:deploy:rx"
+    "z /home/server/nixosConfigs/pull.sh 0750 server users - -"
   ];  
 }

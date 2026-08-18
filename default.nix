@@ -89,6 +89,10 @@
           command = "/run/current-system/sw/bin/nixos-rebuild switch --impure --flake path\\:/home/server/nixosConfigs\\#p5kserv";
 	  options = [ "NOPASSWD" ];
 	}
+	{
+          command = "/run/current-system/sw/bin/bash /home/server/nixosConfigs/pull.sh";
+	  options = [ "NOPASSWD" ];
+	}
       ];
     }];
   };
@@ -96,7 +100,10 @@
   systemd.services.deploy-configuration = {
     description = "CI/CD Github runner rebuild";
     path = [ "/run/wrappers" ];
-    script = ''/run/wrappers/bin/sudo -n /run/current-system/sw/bin/nixos-rebuild switch --impure --flake path:/home/server/nixosConfigs#p5kserv'';
+    script = ''
+      /run/wrappers/bin/sudo -n -u server /run/current-system/sw/bin/bash /home/server/nixosConfigs/pull.sh; 
+      /run/wrappers/bin/sudo -n /run/current-system/sw/bin/nixos-rebuild switch --impure --flake path:/home/server/nixosConfigs#p5kserv
+    '';
     serviceConfig = {
       Type = "oneshot";
       User = "deploy";
