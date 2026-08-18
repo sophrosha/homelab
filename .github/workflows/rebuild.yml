@@ -1,0 +1,23 @@
+name: Rebuild HomeLab Configuration
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: TailScale connect
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
+
+      - name: Run rebuild
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_USER_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key deploy@p5kserv -p 55 'sudo systemctl start deploy-configuration'
