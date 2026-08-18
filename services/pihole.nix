@@ -89,10 +89,8 @@
     };
   };
 
-  systemd.tmpfiles.rules = [
-    "f /etc/pihole/versions 0644 pihole pihole - -"
-  ];
-  systemd.services.pihole-ftl.serviceConfig.EnvironmentFile = [
-    config.sops.secrets."pihole_secret".path
-  ];
+  systemd = {
+    tmpfiles.rules = [ "f /etc/pihole/versions 0644 pihole pihole - -" ];
+    services.pihole-ftl.serviceConfig.EnvironmentFile = [ config.sops.secrets."pihole_secret".path ];
+  };
 }
