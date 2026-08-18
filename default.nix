@@ -118,7 +118,7 @@
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "prohibit-password";
-      AllowUsers = [ "server" ];
+      AllowUsers = [ "server" "deploy" ];
     };
   };
 
