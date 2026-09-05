@@ -190,3 +190,7 @@ sudo reboot
 ```sh
 sudo nixos-rebuild switch --impure --flake path:/home/server/nixosConfigs
 ```
+
+---
+
+**[Возврат к главному](/docs/readme.md)**
