@@ -56,3 +56,5 @@ homelab
 [Сервисы](/docs/services/readme.md)
 
 [Системные конфигурации](/docs/system/readme.md)
+
+**[Возврат в README](/README.md)**
